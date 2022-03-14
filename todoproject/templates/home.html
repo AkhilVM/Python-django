@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block  content %}
+    {% for i in task %}
+            <div class="card shadow bg-white " style="width: 22rem;">
+              <div class="card-body ">
+                <h3 class="card-title">{{i.name}}</h3>
+                <a href="{% url 'cbvdetail' i.id %}">Go to details</a>
+              </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+{% endblock %}

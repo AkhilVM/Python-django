@@ -1,0 +1,23 @@
+.container-fluid{
+background-color: #000000;
+}
+#left-section{
+background-color: black;
+ border-radius: 25px;>
+}
+
+.container{
+background-color: #eeeedd;
+border-radius: 25px;
+}
+.card-heading{
+color: #686262;
+padding-left: 94px;
+}
+#title{
+font-family: Lucida Bright;
+font-size:58px;
+}
+#form{
+border-radius: 25px;
+}
