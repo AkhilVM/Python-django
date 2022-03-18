@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container-fluid " >
+<div class="container-fluid my_head" >
     <div class="row">
           <div class="col-md-12 " >
                 <div class="text-center ">
@@ -12,10 +12,12 @@
          </div>
     </div>
 </div>
-<div class="container mt-4 shadow">
+
+<div class="container mt-4 shadow" >
+
     <div class="row">
-        <div class=" col-md-6 bg-white " id="left-section">
-                        <form method="post" class="mt-4">
+       <div class=" col-md-6 bg-white pl-2" id="left-section" style="height: fit-content">
+                        <form method="post" class="mt-4" >
                             {% csrf_token %}
                             <div class="form-group">
                             <input type="text" class="form-control bg-white" name="name" placeholder="Enter your task">
@@ -31,18 +33,14 @@
                             </div>
                         </form>
                 </div>
-        <div class="row col-md-6 justify-content-center">
+
+
+        <div class="row col-md-5 justify-content-center" >
         <div  class="col-md-6 mt-4 text-center" >
             <div class="col-md-12">
-                <div style="float: left; margin-left:-12px; margin-right: 4px;" >
+                <div >
                    <h2 class="card-heading">Tasks</h2>
                 </div>
-                  <div  style="float: left; margin-left: -3px;">
-                   <form action="{% url 'deleteall' %}" method="post" style="float: left">
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-danger" value="delete all">
-                   </form>
-                 </div>
             </div>
             {% for i in task %}
             <div class="card shadow bg-white " style="width: 22rem;">
