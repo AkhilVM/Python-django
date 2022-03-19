@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  {% if category %}
+      {{ catrgory.description|truncatewords:155 }}
+  {% else %}
+      welcome...
+  {% endif %}
+{% endblock %}
+{% block title %}
+     {% if category %}
+      {{category.name}}-abc store
+    {% else %}
+       See our collections
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if category %}
+      <div>
+        <div class="row my_row_class">
+            <div class="mx-auto">
+                 <p><a href="{% url 'shop:AllProdCat' %}"> Our product collections</a></p>
+            </div>
+        </div>
+      </div>
+ {% endif %}
+
+       <br>
+      <div>
+        <h1 class="text-center my_title">{{category.name}}</h1>
+
+        {% if category %}
+          <div class="text-center">
+           <img class="my_image " src="{{category.image.url}}" alt="{{category.name}}" >
+          </div>
+        <p class="text-justify">{{category.description}}</p>
+      </div>
+        {% else %}
+        <div class="">
+        <img  class="my_banner my_image_padding" src="{% static 'image/banner.png' %}" alt="our products " width="1325px">
+        </div>
+        <div>
+            <h1 class="text-center"> Our pruducts</h1>
+            <p class="text-justify my_text"> Search for Ecommerce Website Creation. Instant and personalized results at AVMShop Search. 99% Match on Your Search Query. Find Here with AVMShop.com - Free, Private and Secure. Unlimited Access. Always Facts. Privacy Friendly. The Best Resources. Results & Answers. Services: Best Results, Explore Now, New Sources, Best in Search.</p>
+        </div>
+        {% endif %}
+        <div class="container">
+            <div class="row ">
+                     {% for product in products.object_list %}
+                <div class="row ml-5 pt-4">
+                    <div class="col-md-4 ">
+                        <div class="card " style="width: 18rem;">
+                            <img class="card-img-top thumbnail"  src="{{product.image.url}}" alt="{{product.name}}" width="250"height="350">
+                              <div class="card-body">
+                                <h4 class="card-title ">{{product.name}}</h4>
+                                 <hr>
+                                  <a class="btn btn-outline-secondary " href="{% url 'cart:add_cart' product.id %}">Add to Cart</a>
+                                  <a class="btn btn-outline-success" style="float: right;" href="{{product.get_url}}">View</a>
+                                  <hr>
+                                  <h4 class="text-center" >₹{{product.price}}</h4>
+                              </div>
+                        </div>
+                    </div>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+            <div class="mx-auto">
+                {% if products.paginator.num_pages > 1 %}
+
+                <hr>
+                <div class="text-center">
+                    {% for pg in products.paginator.page_range %}
+                     <a href="?page={{pg}}" class="btn btn-light btn-sm
+                         {% if products.number == pg %}
+                         active
+                         {% endif %}">
+                         {{pg}}
+                     </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <br>
+
+
+{% endblock %}
